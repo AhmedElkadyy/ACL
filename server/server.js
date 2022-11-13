@@ -165,6 +165,73 @@ app.post("/searchCourse", async (req, res) => {
     });
 
 
+    app.get("/ShowMyCourses",function(req,res){
+        var Title= req.body.Title;
+        var Subject= req.body.Subject;
+        var Instructor= req.body.Instructor;
+        if ((Title!== null) && (Subject== null) && (Instructor==null)){
+            var query= Course.find({Title:Title });
+            query.exec(function(err,result){
+                var array = [];
+                for ( var i=0; i<result.length;i++){
+                    res.json(result[i]);
+                    //console.log(result[i].Price);
+                
+                
+        }});
+        }
+        else if (Title== null && Subject!== null && Instructor==null){
+            var query = Course.find({Subject:Subject});
+            query.exec(function(err,result){
+                var array = [];
+                for (var i=0; i<result.length;i++){
+                    res.json(result[i]);
+                    //console.log(result[i].Price);
+                
+                
+        }});
+    
+        }
+        else {
+         //var Instructor= req.body.Instructor;
+        var query = Course.find({Instructor:Instructor});
+        query.exec(function(err,result){
+            var array = [];
+            for (var i=0; i<result.length;i++){
+                res.json(result[i]);
+                //console.log(result[i].Price);
+            
+            
+    }});
+    
+        }
+        
+    
+    
+    });
+
+  
+    
+    app.get("/filterCourses",async (req,res)=>{
+        const instructorId =req.params.id;
+        const courses=await Course.find({InstructorId:instructorId});
+        try{
+        const resultarr=courses.filter((courses)=>(courses.InstructorId===instructorId)).map((courses) => {
+            return {
+             Title: courses.Title,
+            }});
+        if(resultarr.length===0){
+            res.status(400)
+            throw new Error("Sorry!You dont have any courses");
+        }res.status(200).json(resultarr);
+    }catch(error){
+        res.status(400).json({error:error.message})
+    }
+   
+    });
+
+
+   
 
 
 

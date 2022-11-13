@@ -12,6 +12,13 @@ const instructorSchema = new Schema({
     type: String,
     // required: true
   }
+
+  ,
+  Id: {
+    type: String,
+    // required: true
+  }
+
  
 }, { timestamps: true });
 

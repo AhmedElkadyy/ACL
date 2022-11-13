@@ -8,7 +8,8 @@ import Instructor from './Instructor';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Instructor/>
+   <App/>
+   {/* <Instructor/> */}
   </React.StrictMode>
 );
 
