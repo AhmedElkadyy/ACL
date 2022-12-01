@@ -1,9 +1,9 @@
 
-import './App.css';
+import './Admin.css';
 import Axios from 'axios';
 import React, { useState } from 'react';
 
-function App() {
+function Admin() {
 
   const [Email, setEmail] = useState('')
   const [Pass, setPass] = useState('')
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default Admin;

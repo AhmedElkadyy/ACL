@@ -212,14 +212,16 @@ app.post("/searchCourse", async (req, res) => {
 
   
     
-    app.get("/filterCourses",async (req,res)=>{
+    app.get("/ViewCourse", (req,res)=>{
         const instructorId =req.params.id;
-        const courses=await Course.find({InstructorId:instructorId});
+        const courses= Course.find({InstructorId:instructorId});
         try{
         const resultarr=courses.filter((courses)=>(courses.InstructorId===instructorId)).map((courses) => {
             return {
              Title: courses.Title,
             }});
+
+            console.log(resultarr)
         if(resultarr.length===0){
             res.status(400)
             throw new Error("Sorry!You dont have any courses");
@@ -227,11 +229,50 @@ app.post("/searchCourse", async (req, res) => {
     }catch(error){
         res.status(400).json({error:error.message})
     }
+
+
+   
+    console.log("Result here")
+  
    
     });
 
 
+
+    // app.post("/ViewCourse", async (req, res) => {
+
+ 
+    //     const  Instructor = req.body.Instructor
+        
+    
+    //     const courses=await Course.find({Instructor:instructor})
+       
+        
+    //     console.log(JSON.stringify(Instructor))
+        
+    //     Course.find(({Instructor:Instructor}),
+    //     function(err,val){
+    
+    
+      
+        
+    //         console.log(JSON.stringify(val))
+    //         console.log("Result here")
+    //         return res.send(val)
+           
+      
+       
+         
+      
+          
+      
+    //     })
+      
+    //     });
+    
+
    
+
 
 
 

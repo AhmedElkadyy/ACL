@@ -1,6 +1,7 @@
 import "./Instructor.css";
 import Axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import {Navigate} from "react-router-dom";
 
 function Instructor() {
 
@@ -11,6 +12,18 @@ function Instructor() {
     const [Instructor, setInstructor] = useState('');
     const [Search, setSearch] = useState('');
     const [Result, setResult] = useState('');
+    const [ResultView, setResultView] = useState('');
+    const [ButtonQuiz, setButtonQuiz] = useState(false);
+    const [ButtonProfile, setButtonProfile] = useState(false);
+
+    if (ButtonQuiz){
+      return <Navigate  to="/Quiz"/>
+
+  }
+  if (ButtonProfile){
+    return <Navigate  to="/Profile"/>
+
+}
 
     const addCourse = () => {
         Axios.post("http://localhost:3000/insertCourse", { Title: Title, Subtitle: Sub , Price: Price , Summary : Summary})
@@ -21,9 +34,19 @@ function Instructor() {
         Axios.post("http://localhost:3000/searchCourse", { Instructor:Instructor , Search:Search , Result:Result })
       }
 
+      const ViewCourse = ()=> useEffect(()=>{
+        Axios.get('http://localhost:3000/ViewCourse').then((res)=>{
+          setResultView(res.data)
+           
+           
+        })
+      })
+
+     
       
 
     return (
+
 
 
 
@@ -32,9 +55,18 @@ function Instructor() {
 
 <label>insert your name:</label>
 <input type="text"  onChange={(event) => { setInstructor(event.target.value) }}></input>
+            
+            
             <br></br>
             <br></br>
             <h1>Instructor Page</h1>
+            <br></br>
+
+
+            <button onClick={ViewCourse}>View Courses</button>
+            {ResultView}
+
+
             <br></br>
             <h2>Add Course</h2>
             <label>Title:</label>
@@ -59,6 +91,11 @@ function Instructor() {
             <input type="text" onChange={(event) => { setResult(event.target.value) }}></input>
 
             <button onClick={searchCourse}>Search Course</button>
+            <br></br>
+
+            <button onClick={()=>{setButtonQuiz(true)}}>Create Quiz</button>
+            <br></br>
+            <button onClick={()=>{setButtonProfile(true)}}>Edit Profile</button>
             
 
 
