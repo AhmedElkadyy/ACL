@@ -1,15 +1,53 @@
-.Instructor {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  input,button,label{
-    width: 200px;
-    height: 30px;
-    font-size: 25px;
-    margin: 5px;
-  }
-  
+
+
+.h1{
+  color:  cornflowerblue;
+}
+.button-group{
+  text-align:center;
+}
+.button-group:before{
+  content:'';
+  height:100%;
+  display:inline-block;
+  vertical-align:middle;
+}
+.button2{
+  background: cornflowerblue;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+  height: 360px;
+  width: 450px;
+  display: inline;
+}
+.button2:hover{
+  background:#fff;
+  color: cornflowerblue;
+}
+.button2:before,.button2:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background:  cornflowerblue;
+  transition:400ms ease all;
+}
+.button2:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.button2:hover:before,.button2:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}

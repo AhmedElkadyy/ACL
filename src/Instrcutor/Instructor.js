@@ -15,6 +15,13 @@ function Instructor() {
     const [ResultView, setResultView] = useState('');
     const [ButtonQuiz, setButtonQuiz] = useState(false);
     const [ButtonProfile, setButtonProfile] = useState(false);
+    const [ButtonCourses, setButtonCourses] = useState(false);
+    const [ButtonAddCourse, setButtonAddCourse] = useState(false);
+
+    if (ButtonAddCourse){
+      return <Navigate  to="/AddCourse"/>
+
+  }
 
     if (ButtonQuiz){
       return <Navigate  to="/Quiz"/>
@@ -22,6 +29,12 @@ function Instructor() {
   }
   if (ButtonProfile){
     return <Navigate  to="/Profile"/>
+
+}
+
+
+if (ButtonCourses){
+  return <Navigate  to="/ShowCourses"/>
 
 }
 
@@ -36,7 +49,8 @@ function Instructor() {
 
       const ViewCourse = ()=> useEffect(()=>{
         Axios.get('http://localhost:3000/ViewCourse').then((res)=>{
-          setResultView(res.data)
+          // setResultView(res.data)
+          console.log(res)
            
            
         })
@@ -52,18 +66,17 @@ function Instructor() {
 
         <div className="Instructor">
 
-
+{/* 
 <label>insert your name:</label>
 <input type="text"  onChange={(event) => { setInstructor(event.target.value) }}></input>
+             */}
             
+           
+            <h1>INSTRUCTOR PAGE</h1>
             
-            <br></br>
-            <br></br>
-            <h1>Instructor Page</h1>
-            <br></br>
 
 
-            <button onClick={ViewCourse}>View Courses</button>
+            {/* <button onClick={()=>{setButtonCourses(true)}}>View Courses</button>
             {ResultView}
 
 
@@ -96,7 +109,16 @@ function Instructor() {
             <button onClick={()=>{setButtonQuiz(true)}}>Create Quiz</button>
             <br></br>
             <button onClick={()=>{setButtonProfile(true)}}>Edit Profile</button>
-            
+             */}
+
+<div class = "mybtn">
+         <button class = "button2"  onClick={()=>{setButtonCourses(true)}}>VIEW COURSES</button>
+         <button class = "button2" onClick={()=>{setButtonAddCourse(true)}}>ADD COURSE</button>
+         <button class = "button2">SEARCH FOR COURSE</button>
+         <button class = "button2">FILLTER COURSES</button>
+         <button class = "button2"  onClick={()=>{setButtonQuiz(true)}}>CREATE QUIZ</button>
+          <button class = "button2" onClick={()=>{setButtonProfile(true)}}>EDIT PROFILE</button>
+      </div>
 
 
 

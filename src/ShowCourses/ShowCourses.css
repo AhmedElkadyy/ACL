@@ -1,0 +1,37 @@
+
+  .viewCourseHeader{
+    color: cornflowerblue;
+    font-size: 75px;
+  }
+  
+  .viewCourseCourses1{
+    color:  cornflowerblue;
+    font-size: 30px;
+  
+  }
+  
+  .viewCourseCourses2{
+    color:  cornflowerblue;
+    font-size: 25px;
+    margin: 10px;
+  
+  }
+  
+  .viewCourseCoursesB{
+    width: 120px;
+    height: 25px;
+    font-size: 15px;
+    margin: 5px;
+  
+  }
+  
+  input,button{
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    margin: 5px;
+  }
+  p{
+    width: 300px;
+    margin: 15px;
+  }

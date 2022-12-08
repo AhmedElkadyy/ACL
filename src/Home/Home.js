@@ -2,6 +2,7 @@ import "./Home.css"
 import { Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 
+
 function Home() {
 
 
@@ -24,10 +25,21 @@ function Home() {
 
     return (
         <div className='Home'>
-            <button onClick={() => { setAdminButton(true) }}>Sign In as Admin</button>
-            <button onClick={() => { setInstructorButton(true) }}>Sign In as Instructor</button>
-            <button onClick={() => { setTraineeButton(true) }}>Sign In as Trainee</button>
 
+            
+
+            <h1 className="h1">SIGN IN AS</h1>
+
+            <div className='button-group'>
+           <button class="button" onClick={()=>{setAdminButton(true)}}>  <i class="fa fa-home"></i>ADMIN</button>
+
+
+<button class="button" onClick={()=>{setTraineeButton(true)}}>TRAINEE</button>
+
+<button class="button"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
+
+
+</div>
         </div>
 
     );

@@ -61,7 +61,18 @@ const courseSchema = new Schema({
   InstructorId: {
     type: String,
     // required: true
+  },
+
+  YoutubeLink: {
+    type: String,
+    // required: true
+  },
+
+  Description: {
+    type: String,
+    // required: true
   }
+
  
 }, { timestamps: true });
 

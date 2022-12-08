@@ -2,68 +2,45 @@
 import './Admin.css';
 import Axios from 'axios';
 import React, { useState } from 'react';
+import { Navigate } from "react-router-dom";
 
 function Admin() {
 
-  const [Email, setEmail] = useState('')
-  const [Pass, setPass] = useState('')
+  const [AdminButton, setAdminButton] = useState(false);
+  const [InstructorButton, setInstructorButton] = useState(false);
+  const [TraineeButton, setTraineeButton] = useState(false);
 
-  const [Email1, setEmail1] = useState('')
-  const [Pass1, setPass1] = useState('')
-
-  const [Email2, setEmail2] = useState('')
-  const [Pass2, setPass2] = useState('')
-
-  const addAdmin = () => {
-    Axios.post("http://localhost:3000/insertAdmin", { Email: Email, Pass: Pass })
+  if (AdminButton) {
+      return <Navigate to="/AddAdmin" />
   }
 
-  const addInstructor = () => {
-    Axios.post("http://localhost:3000/insertInstructor", { Email: Email1, Pass: Pass1 })
+  if (InstructorButton) {
+      return <Navigate to="/AddInstructor" />
   }
 
-  const addTrainee = () => {
-    Axios.post("http://localhost:3000/insertTrainee", { Email: Email2, Pass: Pass2 })
+  if (TraineeButton) {
+      return <Navigate to="/AddTrainee" />
   }
+
 
   return (
+      <div className='Home'>
 
-    <div className="App">
-      <h1>ADMIN PAGE</h1>
-      <h2>ADD ADMIN</h2>
-      <label> Username:</label>
-      <input type="text" onChange={(event) => { setEmail(event.target.value) }} />
-      <label> Password:</label>
-      <input type="text" onChange={(event) => { setPass(event.target.value) }} />
 
-      <button onClick={addAdmin}>Add Admin</button>
+        
 
-      <br></br>
-      <br></br>
+          <h1 className="h1">ADD</h1>
+         <button class="button" onClick={()=>{setAdminButton(true)}}> ADMIN</button>
 
-      <h2>ADD INSTRUCTOR</h2>
-      <label> Username:</label>
-      <input type="text" onChange={(event) => { setEmail1(event.target.value) }} />
-      <label> Password:</label>
-      <input type="text" onChange={(event) => { setPass1(event.target.value) }} />
 
-      <button onClick={addInstructor}>Add Instructor</button>
+<button class="button" onClick={()=>{setTraineeButton(true)}}>TRAINEE</button>
+
+<button class="button"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
 
 
 
-      <br></br>
-      <br></br>
+      </div>
 
-      <h2>ADD TRAINEE</h2>
-      <label> Username:</label>
-      <input type="text" onChange={(event) => { setEmail2(event.target.value) }} />
-      <label> Password:</label>
-      <input type="text" onChange={(event) => { setPass2(event.target.value) }} />
-
-      <button onClick={addTrainee}>Add Trainee</button>
-
-
-    </div>
   );
 }
 
