@@ -1,9 +1,9 @@
-.Profile{
+.filter{
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+    margin-left: 550px;
+    margin-top: 50px;
 }
-

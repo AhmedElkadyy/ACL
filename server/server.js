@@ -251,9 +251,281 @@ app.post("/searchCourse", async (req, res) => {
         })
       
         });
+
+        app.get ("/filterCourse", async(req, res) => {
+            var subject = req.params.Subject;
+            var Rating = req.params.Rating;
+            var price = req.params.Price;
+            var result = []
+            if (subject == "empty" && Rating == "empty" && price == "empty"){
+                result = await Course.find({})
+            } 
+            else 
     
+            if (subject == "empty" && price == "empty") {
+            result = await Course.find({Rating:Rating})
+            }
+    
+            else if (Rating == "empty" && price == "empty") {
+                result =await Course.find({Subject:subject})
+            }
+            else if (Rating == "empty" && subject == "empty") {
+                result =await Course.find({Price:price})
+            }
+            else if (subject = "empty") {
+            result = await Course.find({Rating:Rating , Price:price})
+            }
+            else if (Rating == "empty"){
+            result = await Course.find({Subject:subject , Price:price})
+            }
+            else if (price == "empty"){
+            result = await Course.find({Rating:Rating , Subject:subject})
+            }
+            else{
+            result = await Course.find({Subject:subject , Rating:Rating , Price:price})
+            }
+            res.status(200).json(result);
+            });
+    
+
+            var searchPar;
+
+
+            app.post("/searchCourse1", (req, res) => {
+                searchPar=req.body.SearchPar;
+                console.log((searchPar))
+              });
+        
+              app.get("/searchResult1",(req, res) => {
+               
+
+                Course.find(({$or:[{Title:searchPar},{Subject:searchPar},{Instructor:searchPar}]}),function(err,val){
+            
+                  if(err){
+                      res.send("error")
+                  }
+                  else{
+                     res.send(val)
+                  }
+                })
+            })
 
    
 
 
 
+            var searchPar1;
+            var viewID;
+            
+                app.get("/viewCourse", (req, res) => {
+            
+                    Course.find(({}),function(err,val){
+                
+                      if(err){
+                          res.send("error")
+                      }
+                      else{
+                      res.send(val)
+                      }
+                    })
+                  });
+            
+                  app.post("/searchCourse", (req, res) => {
+                    searchPar1=req.body.searchPar;
+                  });
+            
+                  app.get("/searchResult",(req, res) => {
+            
+                    Course.find(({$or:[{Title:searchPar1},{Subject:searchPar1},{Instructor:searchPar1}]}),function(err,val){
+                
+                      if(err){
+                          res.send("error")
+                      }
+                      else{
+                         res.send(val)
+                      }
+                    })
+            
+            
+                });
+            
+            
+                app.post("/viewDetails1", (req, res) => {
+                  viewID=req.body.viewID;
+                 
+                });
+            
+                app.get("/viewDetails", (req, res) => {
+            
+                  Course.find(({_id:viewID}),function(err,val){
+              
+                    if(err){
+                        res.send("error")
+                    }
+                    else{
+                    res.send(val)
+                    }
+                  })
+                });
+
+                app.get("/read",async (req, res)=>{
+                    Course.find({},(err,result)=>{
+                      if(err){
+                        res.send(err);
+                      }
+                      res.send(result);
+                    })
+                  
+                  
+                  
+                  });
+                  app.put("/update",async (req, res)=>{
+                    const newQuestion=req.body.Question;
+                    const newAnswer=req.body.Answer;
+                    const NewWrong1=req.body.Wrong1;
+                    const NewWrong2=req.body.Wrong2;
+                    const NewWrong3=req.body.Wrong3;
+                    const CourseName=req.body.CourseName;
+                    const Exrecise=newQuestion+"="+newAnswer+""+NewWrong1+""+NewWrong2+"*"+NewWrong3;
+                    console.log(Exrecise);
+                    var myquery = { Title: CourseName };
+                    var newvalues = { $push: { "Exercies": Exrecise } };
+                    Course.updateOne(myquery, newvalues, function(err, res) {
+                      if (err) throw err;
+                      console.log("1 document updated");
+                    }); 
+                  })
+
+               
+
+var priceL;
+var priceH;
+var ratingL;
+var ratingH;
+var subject;
+var name;
+
+
+                  app.post("/filterR", (req, res) => {
+                    priceL=req.body.priceL;
+                    priceH=req.body.priceH;
+                    ratingL=req.body.ratingL;
+                    ratingH=req.body.ratingH;
+                    subject=req.body.subject;
+                   
+                  });
+              
+                  app.get("/filterResultR", (req, res) => {
+                    if(subject!=''){
+                      Course.find(({Price:{$lte:priceH,$gte:priceL},Rating:{$lte:ratingH,$gte:ratingL},Subject:subject}),function(err,val){
+                  
+                        if(err){
+                            res.send("error")
+                        }
+                        else{
+                        res.send(val)
+                        }
+                      })
+                    } else{
+                      Course.find(({Price:{$lte:priceH,$gte:priceL},Rating:{$lte:ratingH,$gte:ratingL}}),function(err,val){
+                  
+                        if(err){
+                            res.send("error")
+                        }
+                        else{
+                        res.send(val)
+                        }
+                      })
+                    }
+                    
+                   
+                  });
+
+                  app.put("/updateCourse",async(req,res)=>{
+                    const newRate= req.body.newRate;
+                    const Title= req.body.Title;
+                  var myquery = { Title: Title };
+                  var newvalues = { $set: { "Rating": newRate } };
+                  Course.updateOne(myquery, newvalues, function(err, res) {
+                  if (err) throw err;
+                  })
+                });
+              
+                app.put("/updatee",async(req,res)=>{
+                  const newRate= req.body.newRatee;
+                  const Email= req.body.Email;
+                  console.log(Email);
+                  console.log(newRate);
+              
+              
+                var myquery = { Email: Email };
+                var newvalues = { $set: { "Rating": newRate } };
+                Instructor.updateOne(myquery, newvalues, function(err, res) {
+                if (err) throw err;
+                });
+                });
+              
+                app.get("/readcourses",async(req,res)=>{
+                  Course.find({},(err, result)=>{
+                    if(err){
+                      res.send(err);
+                    }
+                    res.send(result);
+                  });
+                });
+              
+                app.get("/readinstructor",async(req,res)=>{
+                  Instructor.find({},(err, result)=>{
+                    if(err){
+                      res.send(err);
+                    }
+                    res.send(result);
+                  });
+                });
+              
+                  app.get("/filterResultR", (req, res) => {
+                    if(subject!=''){
+                      Course.find(({Price:{$lte:priceH,$gte:priceL},Rating:{$lte:ratingH,$gte:ratingL},Subject:subject}),function(err,val){
+                  
+                        if(err){
+                            res.send("error")
+                        }
+                        else{
+                        res.send(val)
+                        }
+                      })
+                    } else{
+                      Course.find(({Price:{$lte:priceH,$gte:priceL},Rating:{$lte:ratingH,$gte:ratingL}}),function(err,val){
+                  
+                        if(err){
+                            res.send("error")
+                        }
+                        else{
+                        res.send(val)
+                        }
+                      })
+                    }
+                    
+                   
+                  });
+              
+                  app.post("/getExercises",async (req, res)=>{
+                    name=req.body.name;
+                    console.log(name);
+                    });
+              
+                  app.get("/readExercises",async (req, res)=>{
+                    Course.find({Title: name},(err,result)=>{
+                      if(err){
+                        res.send(err);
+                      }
+                      res.send(result);
+                    })});
+              
+              
+              
+                  
+              
+              
+              
+              

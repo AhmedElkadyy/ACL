@@ -18,6 +18,17 @@ const instructorSchema = new Schema({
     type: String,
     // required: true
   }
+  ,
+  Rating: {
+    type: String,
+    // required: true
+  }
+  ,
+  Bio: {
+    type: String,
+    // required: true
+  }
+
 
  
 }, { timestamps: true });

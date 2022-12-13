@@ -17,6 +17,9 @@ function Instructor() {
     const [ButtonProfile, setButtonProfile] = useState(false);
     const [ButtonCourses, setButtonCourses] = useState(false);
     const [ButtonAddCourse, setButtonAddCourse] = useState(false);
+    const [ButtonSearchCourse, setButtonSearchCourse] = useState(false);
+    const [ButtonFilterCourse, setButtonFilterCourse] = useState(false);
+    
 
     if (ButtonAddCourse){
       return <Navigate  to="/AddCourse"/>
@@ -35,6 +38,17 @@ function Instructor() {
 
 if (ButtonCourses){
   return <Navigate  to="/ShowCourses"/>
+
+}
+
+if (ButtonSearchCourse){
+  return <Navigate  to="/SearchCourse"/>
+
+}
+
+
+if (ButtonFilterCourse){
+  return <Navigate  to="/FilterCourses"/>
 
 }
 
@@ -71,8 +85,8 @@ if (ButtonCourses){
 <input type="text"  onChange={(event) => { setInstructor(event.target.value) }}></input>
              */}
             
-           
-            <h1>INSTRUCTOR PAGE</h1>
+{/*            
+            <h1>INSTRUCTOR PAGE</h1> */}
             
 
 
@@ -114,9 +128,9 @@ if (ButtonCourses){
 <div class = "mybtn">
          <button class = "button2"  onClick={()=>{setButtonCourses(true)}}>VIEW COURSES</button>
          <button class = "button2" onClick={()=>{setButtonAddCourse(true)}}>ADD COURSE</button>
-         <button class = "button2">SEARCH FOR COURSE</button>
-         <button class = "button2">FILLTER COURSES</button>
-         <button class = "button2"  onClick={()=>{setButtonQuiz(true)}}>CREATE QUIZ</button>
+         <button class = "button2" onClick={()=>{setButtonSearchCourse(true)}}>SEARCH FOR COURSE</button>
+         <button class = "button2" onClick={()=>{setButtonFilterCourse(true)}}>FILTER COURSES </button>
+         <button class = "button2"  onClick={()=>{setButtonQuiz(true)}}>CREATE EXERCISE</button>
           <button class = "button2" onClick={()=>{setButtonProfile(true)}}>EDIT PROFILE</button>
       </div>
 

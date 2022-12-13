@@ -9,16 +9,23 @@ function ShowCourses() {
     const [Instructor, setInstructor] = useState('');
 
     const [ButtonReviews, setButtonReviews] = useState(false);
+
+    const [ButtonSubtitles, setButtonSubtitels] = useState(false);
     const [courseList, setCourseList] = useState([])
 
+    
     useEffect(() => {
-        Axios.get("http://localhost:3000/ViewCourseK", { Instructor: Instructor }).then(function (response) {
+        Axios.get("http://localhost:3000/ViewCourseK", { Instructor: Instructor  }).then(function (response) {
             setCourseList(response.data);
         });
     }, []);
     if (ButtonReviews){
         return <Navigate  to="/Reviews"/>
   
+    }
+    if (ButtonSubtitles){
+        return <Navigate  to="/Subtitles"/>
+
     }
 
     return (
@@ -27,21 +34,30 @@ function ShowCourses() {
 
         <div className="App">
 
+
             <label>insert your name:</label>
             <input type="text" onChange={(event) => { setInstructor(event.target.value) }}></input>
 
 
             <h1 className="viewCourseHeader">Courses</h1>
+            <br></br>
             {courseList.map((val, key) => {
                 return <div>
 
 
 
                     <h2 className='viewCourseCourses1'> {val.Title}</h2>
+                    <br></br>
                     
-                    <h2 className='viewCourseCourses2'>  {val.Subtitle} </h2>
+                <button className='subtittle'   onClick={()=>{setButtonSubtitels(true)}}>View Subtitles </button>
+
+                <br></br>
+                <br></br>
+
                     
-                    <p>{val.Description}</p>
+                    <p className='Description'>{val.Description}</p>
+
+                    <br></br>
 
                     <iframe width="420" height="315" src={val.YoutubeLink}>
                     </iframe>
@@ -51,11 +67,15 @@ function ShowCourses() {
                         Rating: {val.Rating} &nbsp;&nbsp;
                         <button className='viewCourseCoursesB'   onClick={()=>{setButtonReviews(true)}}> Open Reviews</button>
 
+                 
+
 
 
 
                     </h2>
                     <h2>  __________________  </h2>
+
+                    <br></br>
                 </div>
             }
             )

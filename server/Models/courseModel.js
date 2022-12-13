@@ -19,7 +19,7 @@ const courseSchema = new Schema({
   }
   ,
   Subtitle: {
-    type: String,
+    type: Array,
     // required: true
   },
   Price: {

@@ -24,18 +24,18 @@ function Admin() {
 
 
   return (
-      <div className='Home'>
+      <div className='Admin'>
 
 
         
 
           <h1 className="h1">ADD</h1>
-         <button class="button" onClick={()=>{setAdminButton(true)}}> ADMIN</button>
+         <button class="button1" onClick={()=>{setAdminButton(true)}}> ADMIN</button>
 
 
-<button class="button" onClick={()=>{setTraineeButton(true)}}>TRAINEE</button>
+<button class="button1" onClick={()=>{setTraineeButton(true)}}>TRAINEE</button>
 
-<button class="button"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
+<button class="button1"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
 
 
 

@@ -19,7 +19,7 @@ function Home() {
     }
 
     if (TraineeButton) {
-        return <Navigate to="/Trainee" />
+        return <Navigate to="/viewCourse" />
     }
 
 
@@ -31,12 +31,12 @@ function Home() {
             <h1 className="h1">SIGN IN AS</h1>
 
             <div className='button-group'>
-           <button class="button" onClick={()=>{setAdminButton(true)}}>  <i class="fa fa-home"></i>ADMIN</button>
+           <button class="button1" onClick={()=>{setAdminButton(true)}}>  <i class="fa fa-home"></i>ADMIN</button>
 
 
-<button class="button" onClick={()=>{setTraineeButton(true)}}>TRAINEE</button>
+<button class="button1" onClick={()=>{setTraineeButton(true)}}>TRAINEE</button>
 
-<button class="button"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
+<button class="button1"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
 
 
 </div>

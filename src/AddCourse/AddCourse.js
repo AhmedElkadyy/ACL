@@ -21,18 +21,32 @@ function AddCourse() {
 
     return (
         <div className='AddCourse'>
-<h2>Add Course</h2>
-            <label>Title:</label>
-            <input type="text"  onChange={(event) => { setTitle(event.target.value) }}></input>
-            <label>Subtitles:</label>
-            <input type="text" onChange={(event) => { setSub(event.target.value) }}></input>
-            <label>Price:</label>
-            <input type="text" onChange={(event) => { setPrice(event.target.value) }}></input>
-            <label>Summary:</label>
-            <input type="text" onChange={(event) => { setSummary(event.target.value) }}></input>
 
-            <button onClick={addCourse}>Add Course</button>
-     
+
+            <div id="login">
+
+<h1>Add Course</h1>
+
+<form action="#" method="get">
+
+  <fieldset>
+
+    <p><input  onChange={(event) => { setTitle(event.target.value) }} type="text" placeholder="Email"/></p>
+
+    <p><input onChange={(event) => { setSub(event.target.value) }}  type="text"  placeholder="Subtitle"/></p>
+
+    <p><input onChange={(event) => { setPrice(event.target.value) }}  type="text"  placeholder="Price"/></p>
+    
+    <p><input onChange={(event) => { setSummary(event.target.value) }}  type="text"  placeholder="Summary"/></p>
+
+    <p><input  onClick={addCourse} type="submit" value="ADD"/></p>
+
+  </fieldset>
+
+</form>
+
+
+</div>
 
 
 </div>
