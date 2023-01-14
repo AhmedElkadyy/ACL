@@ -15,7 +15,7 @@ function ShowCourses() {
 
     
     useEffect(() => {
-        Axios.get("http://localhost:3000/ViewCourseK", { Instructor: Instructor  }).then(function (response) {
+        Axios.get("http://localhost:3000/ViewCourseR", { Instructor: Instructor  }).then(function (response) {
             setCourseList(response.data);
         });
     }, []);

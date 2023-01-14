@@ -25,6 +25,7 @@ import Subtitle from '../Subtittle/Subtitle'
 import FilterResults from '../FilterResults/FilterResults'
 import FilterPar from '../FilterPar'
 import Exercise from '../Exercise'
+import Login from '../loginPage/Login'
 
 
 
@@ -58,6 +59,8 @@ function App() {
                     <Route path='/FilterResults' element={<FilterResults />} />
                     <Route path='/FilterPar' element={<FilterPar />} />
                     <Route path='/Exercise' element={<Exercise />} />
+                    <Route path='/Login' element={<Login />} />
+                    
 
 
 

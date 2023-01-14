@@ -3,6 +3,10 @@ const express = require("express");
 const mongoose = require('mongoose');
 const cors = require('cors')
 const alert = require('alert');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const SECRET_KEY = 'secretkey112233';
+
 
 
 
@@ -18,7 +22,8 @@ const bodyParser = require('body-parser');
 const Admin = require("./Models/adminModel");
 const Instructor = require("./Models/instructorModel");
 const Trainee = require("./Models/TraineeModel");
-const Course = require("./Models/courseModel")
+const Course = require("./Models/courseModel");
+const User = require("./Models/userModel");
 
 
 app.use(cors())
@@ -29,7 +34,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 // #Importing the userController
 
-
+var login = false;
 // configurations
 // Mongo DB
 mongoose.connect(MongoURI)
@@ -46,6 +51,9 @@ mongoose.connect(MongoURI)
 /*
                 Start of your code
 */
+
+
+
 app.post("/insertAdmin", async (req, res) => {
     const email = req.body.Email
     const pass = req.body.Pass
@@ -521,6 +529,92 @@ var name;
                       }
                       res.send(result);
                     })});
+
+
+                    const createToken = (user) => {
+                      return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
+                          expiresIn: 86400, // expires in 24 hours
+                        });
+                    };
+
+                    app.post("/login", (req, res) => {
+                      const Email = req.body.Email;
+                      const Password = req.body.Password;
+                      User.findOne
+                      ({
+                        Email: Email
+                      }, function (err, user) {
+                        if (err) {
+                          res.send(err
+                          );
+                        }
+                        else {
+                          if (user) {
+                            if (user.Password == Password) {
+                              alert("Login successful");
+                             
+                              login=true;
+                    
+                       
+                              
+                              const token = jwt.sign({Email
+                              :user.Email}, SECRET_KEY, {
+                                expiresIn: 86400 // expires in 24 hours
+                                })
+                                console.log(token)
+                                res.send(token)
+                               
+                                
+                        
+                    
+                              
+                    
+                    
+                    
+                            }
+                            else {
+                              alert("Incorrect password");
+                              res.send("Incorrect password");
+                            }
+                          }
+                          else {
+                            alert("User not found");
+                            res.send("User not found");
+                          }
+                    
+                        }
+                      });
+                    });
+                    
+                    function verifyToken(req, res, next) {
+                      const bearerHeader = req.headers['authorization'];
+                      if (typeof bearerHeader !== 'undefined') {
+                        const bearer = bearerHeader.split(' ');
+                        const bearerToken = bearer[1];
+                        req.token = bearerToken;
+                        next();
+                      } else {
+                        res.sendStatus(403);
+                      }
+                    }
+                    
+                    app.get('/api', verifyToken, (req, res) => {
+                      jwt.verify(req.token, SECRET_KEY, (err, authData) => {
+                        if (err) {
+                          res.sendStatus(403);
+                        } else {
+                          res.json({
+                            message: 'Post created...',
+                            authData
+                          });
+                        }
+                      });
+                    }
+                    );
+                    
+
+
+
               
               
               
