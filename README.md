@@ -1,70 +1,260 @@
-# Getting Started with Create React App
+## Project Title
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Coursera
 
-## Available Scripts
+## Motiviation 
 
-In the project directory, you can run:
+The project itself aims to be a valuable resource for people looking to improve their skills and knowledge. It provides a convenient and accessible way for people to learn new things and achieve their goals through online courses and exercises. By offering the opportunity to practice and apply what they have learned, the project helps students not only learn new information, but also test their understanding and retain it for longer periods of time. The project strives to be the best it can be and continues to work towards this goal. 
 
-### `npm start`
+## Build Status
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+->The project is currently in development.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+->Unit tests will be added.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Description
 
-### `npm run build`
+Course:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Advanced Computer Lab (CSEN 704/ DMET 706), Winter 2022
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Theme:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Our project is an online learning platform that allows both individual and corporate trainees to enroll in a variety of courses and track their progress as they work towards earning a certificate of completion. The platform features a range of courses taught by experienced instructors who have created engaging lectures and quizzes to help students master the material. In addition to providing a convenient and flexible way for learners to gain new skills and knowledge, the platform also offers tools for instructors to manage their courses and for admins to track and address any issues that may arise, such as requests for refunds or reports of problems. Whether you're looking to advance your career, learn a new hobby, or simply expand your horizons, our platform is a great resource for anyone looking to learn and grow.
 
-### `npm run eject`
+Overview:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Our project was developed using the Agile Methodology, which involves breaking the project into shorter time periods called "Sprints." Each Sprint has a specific set of goals, and at the end of each Sprint, a fully functional version of the project is delivered and evaluated based on the specified system requirements. This approach allows for a more flexible and responsive development process, as it allows for ongoing adjustments and improvements to be made based on feedback and changing needs.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Objectives:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+->Gain an understanding of how to effectively utilize the Agile Methodology for project planning and software development   
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+->Learn the process of following a given set of System Requirements to develop a software
 
-## Learn More
+->Learn to research and master the use of the MERN Stack.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+->Learn how to work together as a team on GitHub.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+## Tech and Framework used 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+->React
 
-### Making a Progressive Web App
+->Redux
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+->Node.js
 
-### Advanced Configuration
+->Express
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+->MongoDb
 
-### Deployment
+->Mongoose
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+->joi
 
-### `npm run build` fails to minify
+->Material-Ui
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+->Stripe
+
+->Git
+
+->Github actions
+
+->NodeMailer
+
+->Postman
+
+->VSCode
+
+->JWT
+
+
+## Features
+
+
+Authentiation	    ✔️
+
+Authorization	    ✔️
+
+User Roles	       ✔️
+
+Payments	       ✔️
+
+User Email Notifications	✔️
+
+User Password Reset	✔️
+
+REST API	✔️
+
+Validation using JOI	✔️
+## Code style
+
+-> Camel Case in variable names used
+## LICENSE
+
+This project is licensed under the Apache License 2.0. See the LICENSE file for details.
+## Screenchots
+## Configuration and Setup 
+
+In order to run this project locally, simply fork and clone the repository or download as zip and unzip on your machine
+
+->Open the project in your prefered code editor
+
+->Go to terminal -> New terminal (If you are using VS code)
+
+->Split your terminal into two (run the client on one terminal and the server on the other terminal)
+
+In order to use  ES6 module in node.js:
+
+-> cd server
+
+-> find `package.json`
+
+-> below `main` enter a new key-value pair called `type = module`
+
+In the first terminal:
+
+
+Backend:
+
+cd server && npm start
+
+Frontend:
+
+cd source && npm start
+
+
+
+## Environment Variables
+
+
+PORT
+
+MONGO_URI
+
+TOKEN_KEY
+
+HOST
+
+USER
+
+PASS
+
+SERVICE
+
+STRIPE_PRIVATE_KEY
+## Code Example 
+import './ShowCourses.css'
+
+import Axios from 'axios';
+
+import React, { useState, useEffect } from 'react';
+
+import {Navigate} from "react-router-dom";
+
+import Writenotes from '../Writenotes/Writenotes';
+
+import Downloadcerticate from '../Downloadcertificate/Downloadcertificate';
+
+import Sendcertificate from '../Sendcertificate/Sendcertificate';
+
+
+function ShowCourses() {
+
+    const [Instructor, setInstructor] = useState('');
+
+    const [ButtonReviews, setButtonReviews] = useState(false);
+
+    const [ButtonSubtitles, setButtonSubtitels] = useState(false);
+    const [courseList, setCourseList] = useState([])
+
+    
+    useEffect(() => {
+        Axios.get("http://localhost:3000/ViewCourseR", { Instructor: Instructor  }).then(function (response) {
+            setCourseList(response.data);
+        });
+    }, []);
+    if (ButtonReviews){
+        return <Navigate  to="/Reviews"/>
+  
+    }
+    if (ButtonSubtitles){
+        return <Navigate  to="/Subtitles"/>
+
+    }
+
+    return (
+
+
+
+        <div className="App">
+
+
+            <label>insert your name:</label>
+            <input type="text" onChange={(event) => { setInstructor(event.target.value) }}></input>
+
+
+            <h1 className="viewCourseHeader">Courses</h1>
+            <br></br>
+            {courseList.map((val, key) => {
+                return <div>
+
+
+
+                    <h2 className='viewCourseCourses1'> {val.Title}</h2>
+              
+                    <br></br>
+                    
+                <button className='subtittle'   onClick={()=>{setButtonSubtitels(true)}}>View Subtitles </button>
+
+                
+
+
+                <br></br>
+                <br></br>
+
+                    
+                    <p className='Description'>{val.Description}</p>
+
+                    <br></br>
+
+                    <iframe width="420" height="315" src={val.YoutubeLink}>
+                    </iframe>
+
+                    <Writenotes/>
+                    <Sendcertificate/>
+                    
+
+
+                    <h2 className='viewCourseCourses2'>
+                        Rating: {val.Rating} &nbsp;&nbsp;
+                        <button className='viewCourseCoursesB'   onClick={()=>{setButtonReviews(true)}}> Open Reviews</button>
+
+                 
+
+
+
+
+                    </h2>
+                    <h2>  __________________  </h2>
+
+                    <br></br>
+                </div>
+            }
+            )
+            }
+
+        </div>
+    );
+}
+
+export default ShowCourses;
+## Credits
+
+->  Stackoverflow
+
+
