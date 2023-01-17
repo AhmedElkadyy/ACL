@@ -8,13 +8,13 @@ const instructorSchema = new Schema({
     // required: true
   }
   ,
-  Pass: {
+  Password: {
     type: String,
     // required: true
   }
 
   ,
-  Id: {
+  id: {
     type: String,
     // required: true
   }
@@ -28,6 +28,12 @@ const instructorSchema = new Schema({
     type: String,
     // required: true
   }
+  ,
+  username: {
+    type: String,
+    // required: true
+  }
+  
 
 
  

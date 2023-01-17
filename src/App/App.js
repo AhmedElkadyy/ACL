@@ -26,16 +26,41 @@ import FilterResults from '../FilterResults/FilterResults'
 import FilterPar from '../FilterPar'
 import Exercise from '../Exercise'
 import Login from '../loginPage/Login'
+import SignUp from '../signupPage/signup'
+import SigninOrLogin from '../signinOrLogin/signinOrLogin'
+import Auth from '../Auth'
+import { useState } from 'react';  
+import { Navigate } from 'react-router-dom';
+import TraineeLogin from '../loginPage/loginTrainee';
+import InstructorLogin from '../loginPage/loginInstructor';
+import AdminLogin from '../loginPage/loginAdmin';
+import AdminSignUp from '../signupPage/signupAdmin';
+import InstructorSignUp from '../signupPage/signupInstructor';
+import TraineeSignUp from '../signupPage/signupTrainee';
+import  SignupHome from '../Home/signupHome';
+import CorporateLogin from '../loginPage/loginCorporate';
+import CorporateSignUp from '../signupPage/signupCorporate';
+import PaymentTerms from '../paymentTerms/paymentTerms' 
+import ForgetPassword from '../ForgetPassword/ForgetPassword'   ;
+import VerficationCode from '../verficationCode/verficationCode'
+import ChangePassword from '../ChangePassword/changePassword'
+
+
+
 
 
 
 
 function App() {
+    const [auth, setAuth] = useState(false);
     return (
         <div className='App'>
+            <Auth.Provider value={{auth,setAuth}}>
             <Router>
                 <Routes>
-                    ›<Route path='/' element={<Home />} />
+                    <Route path='/' element={<SigninOrLogin/>} />
+
+                    ›<Route path='/Home' element={<Home />} />
                     <Route path='/Instructor' element={<Instructor />} />
                     <Route path='/Admin' element={<Admin />} />
                     <Route path='/Contract' element={<Contract />} />
@@ -59,8 +84,36 @@ function App() {
                     <Route path='/FilterResults' element={<FilterResults />} />
                     <Route path='/FilterPar' element={<FilterPar />} />
                     <Route path='/Exercise' element={<Exercise />} />
-                    <Route path='/Login' element={<Login />} />
+
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/loginTrainee' element={<TraineeLogin />} />
+                    <Route path='/loginInstructor' element={<InstructorLogin />} />
+                    <Route path='/loginAdmin' element={<AdminLogin />} />
                     
+                    <Route path='/signupTrainee' element={<TraineeSignUp />} />
+                    <Route path='/signupInstructor' element={<InstructorSignUp />} />
+                    <Route path='/signupAdmin' element={<AdminSignUp />} />
+                    <Route path='/signupHome' element={<SignupHome />} />
+
+
+                    <Route path='/loginCorporate' element={<CorporateLogin />} />
+                    <Route path='/signupCorporate' element={<CorporateSignUp />} />
+                    <Route path='/paymentTerms' element={<PaymentTerms />} />
+                    <Route path='/forgotPassword' element={<ForgetPassword />} />
+
+                    <Route path='/verficationCode' element={<VerficationCode />} />
+
+
+                    <Route path='/changePassword' element={<ChangePassword />} />
+
+                    
+
+
+
+
+
+
 
 
 
@@ -72,6 +125,7 @@ function App() {
                 </Routes>
 
             </Router>
+            </Auth.Provider>
 
         </div>
 

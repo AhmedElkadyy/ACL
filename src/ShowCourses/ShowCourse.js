@@ -35,7 +35,6 @@ function ShowCourses() {
         <div className="App">
 
 
-            <label>insert your name:</label>
             <input type="text" onChange={(event) => { setInstructor(event.target.value) }}></input>
 
 

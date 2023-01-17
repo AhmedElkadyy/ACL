@@ -15,7 +15,7 @@ if (ButtonSearchCourse){
    
 }
     const searchCourse = () => {        
-        Axios.post("http://localhost:3000/searchResult1", { searchPar: SearchPar})
+        Axios.post("http://localhost:3000/searchCourse1", { SearchPar: SearchPar})
         setButtonSearchCourse(true);
     }
 
@@ -26,6 +26,7 @@ if (ButtonSearchCourse){
 
     return (
         <div className='SearchCourse'>
+            <h1 className='SCheader'> </h1>
             <input onChange={(event) => { setSearchPar(event.target.value) }}  type="text"  placeholder="Search"/>
           <button class="btn" onClick={  searchCourse} >Search</button>
          

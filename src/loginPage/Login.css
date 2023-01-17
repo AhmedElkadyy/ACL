@@ -76,6 +76,36 @@
 }
 
 
+
+.loginBtn2{
+
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 400px;
+    height: 150px;
+    
+    font-size: 36px;
+    cursor: pointer;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+
+
+    
+
+
+}
+
+.loginBtn2:hover{
+    background-color: #2e4372;
+}
+
      
 
 
@@ -267,6 +297,22 @@
 
 
 }
+
+.loginP{
+    width: 1000px;
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    color: white;
+
+}
+
+
+
+
 
 
 

@@ -49,7 +49,7 @@ function ViewCourse() {
 
         const searchCourse =() => {
             setButton(true) ;
-            Axios.post("http://localhost:3000/searchCourse1", {SearchPar: SearchPar});
+            Axios.post("http://localhost:3000/searchCourse", {SearchPar: SearchPar});
         };
 
         const viewDetails =(id) => {
@@ -94,6 +94,7 @@ function ViewCourse() {
 
     <div className="viewCourse">
       <h1 className="header">Courses</h1>
+
 
       <input className="rana" type="text" placeholder="Search by title/subject/instructor" 
       onChange={(event)=>{

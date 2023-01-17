@@ -3,6 +3,8 @@ import Axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import {Navigate} from "react-router-dom";
 
+
+
 function Instructor() {
 
     const [Title, setTitle] = useState('');
@@ -19,6 +21,7 @@ function Instructor() {
     const [ButtonAddCourse, setButtonAddCourse] = useState(false);
     const [ButtonSearchCourse, setButtonSearchCourse] = useState(false);
     const [ButtonFilterCourse, setButtonFilterCourse] = useState(false);
+    const [buttonLogout, setButtonLogout] = useState(false);
     
 
     if (ButtonAddCourse){
@@ -49,6 +52,17 @@ if (ButtonSearchCourse){
 
 if (ButtonFilterCourse){
   return <Navigate  to="/FilterCourses"/>
+
+}
+
+if (buttonLogout){
+  
+ Axios.get("http://localhost:3000/logout");
+  
+  return <Navigate  to="/"/>
+  
+ 
+
 
 }
 
@@ -132,6 +146,8 @@ if (ButtonFilterCourse){
          <button class = "button2" onClick={()=>{setButtonFilterCourse(true)}}>FILTER COURSES </button>
          <button class = "button2"  onClick={()=>{setButtonQuiz(true)}}>CREATE EXERCISE</button>
           <button class = "button2" onClick={()=>{setButtonProfile(true)}}>EDIT PROFILE</button>
+
+          <button class = "button2" onClick={()=>{setButtonLogout(true)}}>LOGOUT</button>
       </div>
 
 

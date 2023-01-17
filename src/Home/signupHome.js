@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 
 
-function Home() {
+function SignupHome() {
 
 
     const [AdminButton, setAdminButton] = useState(false);
@@ -12,26 +12,23 @@ function Home() {
     const [CorporateButton, setCorporateButton] = useState(false);
 
     if (AdminButton) {
-        return <Navigate to="/loginAdmin" />
+        return <Navigate to="/signupAdmin" />
     }
 
     if (InstructorButton) {
-        return <Navigate to="/loginInstructor" />
-         
+        return <Navigate to="/signupInstructor" />
     }
 
     if (TraineeButton) {
-        return <Navigate to="/loginTrainee" />
+        return <Navigate to="/signupTrainee" />
         //go to after login viewCourse
     }
 
     if (CorporateButton) {
-        return <Navigate to="/loginCorporate" />
+        return <Navigate to="/signupCorporate" />
 
     }
-
     
-
 
 
     return (
@@ -40,12 +37,12 @@ function Home() {
 
             
 
-            <h1 className="loginH1">SIGN IN AS</h1>
+            <h1 className="loginH1">SIGN UP AS</h1>
             <br></br>
             <br></br>
             <br></br>
             <br></br>
-
+            
 
             <div className='button-group'>
            <button class="button1" onClick={()=>{setAdminButton(true)}}>  <i class="fa fa-home"></i>ADMIN</button>
@@ -55,10 +52,7 @@ function Home() {
 
 <button class="button1"onClick={()=>{setInstructorButton(true)}}> INSTRUCTOR</button>
 
-<button class="button1"onClick={()=>{setCorporateButton(true)}}> CORPORATE </button>
-
-
-
+<button class="button1"onClick={()=>{setCorporateButton(true)}}> CORPORATE</button>
 
 
 </div>
@@ -70,4 +64,4 @@ function Home() {
 
     );
 }
-export default Home;
+export default SignupHome;

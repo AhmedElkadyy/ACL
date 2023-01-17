@@ -6,6 +6,9 @@ const alert = require('alert');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const SECRET_KEY = 'secretkey112233';
+const localStorage = require('localStorage');
+const nodemailer = require('nodemailer');
+
 
 
 
@@ -24,6 +27,8 @@ const Instructor = require("./Models/instructorModel");
 const Trainee = require("./Models/TraineeModel");
 const Course = require("./Models/courseModel");
 const User = require("./Models/userModel");
+const Coporate = require("./Models/coporateModel");
+const { findOne, findOneAndDelete } = require("./Models/adminModel");
 
 
 app.use(cors())
@@ -296,18 +301,18 @@ app.post("/searchCourse", async (req, res) => {
             });
     
 
-            var searchPar;
+            var SearchPar;
 
 
             app.post("/searchCourse1", (req, res) => {
-                searchPar=req.body.SearchPar;
-                console.log((searchPar))
+                SearchPar=req.body.SearchPar;
+                console.log((SearchPar))
               });
         
               app.get("/searchResult1",(req, res) => {
                
 
-                Course.find(({$or:[{Title:searchPar},{Subject:searchPar},{Instructor:searchPar}]}),function(err,val){
+                Course.find(({$or:[{Title:SearchPar},{Subject:SearchPar},{Instructor:SearchPar}]}),function(err,val){
             
                   if(err){
                       res.send("error")
@@ -339,7 +344,7 @@ app.post("/searchCourse", async (req, res) => {
                   });
             
                   app.post("/searchCourse", (req, res) => {
-                    searchPar1=req.body.searchPar;
+                    searchPar1=req.body.SearchPar;
                   });
             
                   app.get("/searchResult",(req, res) => {
@@ -531,6 +536,17 @@ var name;
                     })});
 
 
+
+
+
+
+
+
+
+
+                    // Authentication and Authorization Middleware
+
+
                     const createToken = (user) => {
                       return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
                           expiresIn: 86400, // expires in 24 hours
@@ -563,6 +579,20 @@ var name;
                                 })
                                 console.log(token)
                                 res.send(token)
+
+                                
+
+                                localStorage.setItem('token', token);
+                                localStorage.setItem('Email', user.Email);
+                                localStorage.setItem ('Password', user.Password);
+
+                  ;
+                                console.log(localStorage.getItem('token'))
+                                console.log(localStorage.getItem('Email'))
+                                console.log(localStorage.getItem('Password'));
+
+                                
+
                                
                                 
                         
@@ -586,6 +616,262 @@ var name;
                       });
                     });
                     
+
+
+                    app.post("/loginAdmin", (req, res) => {
+                      const Email = req.body.Email;
+                      const Password = req.body.Password;
+                      Admin.findOne
+                      ({
+                        Email: Email
+                      }, function (err, user) {
+                        if (err) {
+                          res.send(err
+                          );
+                        }
+                        else {
+                          if (user) {
+                            if (user.Password == Password) {
+                              alert("Login successful");
+                             
+                              login=true;
+                    
+                       
+                              
+                              const token = jwt.sign({Email
+                              :user.Email}, SECRET_KEY, {
+                                expiresIn: 86400 // expires in 24 hours
+                                })
+                                console.log(token)
+                                res.send(token)
+
+                                
+
+                                localStorage.setItem('token', token);
+                                localStorage.setItem('Email', user.Email);
+                                localStorage.setItem ('Password', user.Password);
+                                localStorage.setItem ('ID', user._id);  
+
+                  ;
+                                console.log(localStorage.getItem('token'))
+                                console.log(localStorage.getItem('Email'))
+                                console.log(localStorage.getItem('Password'));
+                                console.log(localStorage.getItem('ID'));
+
+
+                                
+
+                               
+                                
+                        
+                    
+                              
+                    
+                    
+                    
+                            }
+                            else {
+                              alert("Incorrect password");
+                              res.send("Incorrect password");
+                            }
+                          }
+                          else {
+                            alert("User not found");
+                            res.send("User not found");
+                          }
+                    
+                        }
+                      });
+                    });
+
+                    app.post("/loginInstructor", (req, res) => {
+                      const Email = req.body.Email;
+                      const Password = req.body.Password;
+                      Instructor.findOne
+                      ({
+                        Email: Email
+                      }, function (err, user) {
+                        if (err) {
+                          res.send(err
+                          );
+                        }
+                        else {
+                          if (user) {
+                            if (user.Password == Password) {
+                              alert("Login successful");
+
+                              login=true;
+
+
+                              const token = jwt.sign({Email
+                              :user.Email}, SECRET_KEY, {
+                                expiresIn: 86400 // expires in 24 hours
+                                })
+                                console.log(token)
+                                res.send(token)
+
+
+                                localStorage.setItem('token', token);
+                                localStorage.setItem('Email', user.Email);
+                                localStorage.setItem
+                                ('Password', user.Password);
+                                localStorage.setItem ('ID', user._id);  
+
+                                console.log(localStorage.getItem('token'))
+                                console.log(localStorage.getItem('Email'))
+                                console.log(localStorage.getItem('Password'));
+                                console.log(localStorage.getItem('ID'));
+
+
+                            }
+                            else {
+                              alert("Incorrect password");
+                              res.send("Incorrect password");
+                            }
+                          }
+                          else {
+                            alert("User not found");
+                            res.send("User not found");
+                          }
+
+                        }
+                      });
+                    });
+
+                    app.post("/loginTrainee", (req, res) => {
+                      const Email = req.body.Email;
+                      const Password = req.body.Password;
+                      Trainee.findOne
+                      ({
+                        Email: Email
+                      }, function (err, user) {
+                        if (err) {
+                          res.send(err
+                          );
+                        }
+                        else {
+                          if (user) {
+                            if (user.Password == Password) {
+                              alert("Login successful");
+                             
+                              login=true;
+                    
+                       
+                              
+                              const token = jwt.sign({Email
+                              :user.Email}, SECRET_KEY, {
+                                expiresIn: 86400 // expires in 24 hours
+                                })
+                                console.log(token)
+                                res.send(token)
+
+                                
+
+                                localStorage.setItem('token', token);
+                                localStorage.setItem('Email', user.Email);
+                                localStorage.setItem ('Password', user.Password);
+                                localStorage.setItem ('ID', user._id);
+                                
+
+                  ;
+                                console.log(localStorage.getItem('token'))
+                                console.log(localStorage.getItem('Email'))
+                                console.log(localStorage.getItem('Password'));
+                                console.log(localStorage.getItem('ID'));
+
+                                
+
+                               
+                                
+                        
+                    
+                              
+                    
+                    
+                    
+                            }
+                            else {
+                              alert("Incorrect password");
+                              res.send("Incorrect password");
+                            }
+                          }
+                          else {
+                            alert("User not found");
+                            res.send("User not found");
+                          }
+                    
+                        }
+                      });
+                    });
+                    
+
+                    app.post("/loginCoporate", (req, res) => {
+                      const Email = req.body.Email;
+                      const Password = req.body.Password;
+                      Coporate.findOne
+                      ({
+                        Email: Email
+                      }, function (err, user) {
+                        if (err) {
+                          res.send(err
+                          );
+                        }
+                        else {
+                          if (user) {
+                            if (user.Password == Password) {
+                              alert("Login successful");
+
+                              login=true;
+
+
+                              const token = jwt.sign({Email
+                              :user.Email}, SECRET_KEY, {
+                                expiresIn: 86400 // expires in 24 hours
+                                })
+                                console.log(token)
+                                res.send(token)
+
+
+
+                                localStorage.setItem('token', token);
+                                localStorage.setItem('Email', user.Email);
+                                localStorage.setItem
+                                ('Password', user.Password);
+                                localStorage.setItem ('ID', user._id);
+
+                                console.log(localStorage.getItem('token'))
+                                console.log(localStorage.getItem('Email'))
+                                console.log(localStorage.getItem('Password'));
+
+                                console.log(localStorage.getItem('ID'));
+
+
+                            }
+                            else {
+                              alert("Incorrect password");
+                              res.send("Incorrect password");
+                            }
+                          }
+                          else {
+
+                            alert("User not found");
+                            res.send("User not found");
+                          }
+
+                        }
+                      });
+                    });
+
+
+
+
+
+
+                    
+
+
+
+
                     function verifyToken(req, res, next) {
                       const bearerHeader = req.headers['authorization'];
                       if (typeof bearerHeader !== 'undefined') {
@@ -611,6 +897,551 @@ var name;
                       });
                     }
                     );
+                    
+
+
+
+
+
+
+
+
+        
+
+                    app.post("/signup", (req, res) => {
+                   
+                      const username = req.body.username;
+                      const Email = req.body.email;
+                      const Password = req.body.password;
+                      
+
+                      const user = new User({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+                      
+                      user.save(function (err) {
+                        if (err) {
+                          res.send(err);
+                        }
+                        else {
+                          console.log(localStorage.getItem('token'))
+                          alert ("User registered");
+                          res.send("User registered");
+
+                        }
+                      }
+                      );
+                    });
+
+
+                    app.post("/signupAdmin", (req, res) => {
+                   
+                      const username = req.body.username;
+                      const Email = req.body.email;
+                      const Password = req.body.password;
+
+                      const user = new Admin({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+                      const user2 = new User({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+
+
+                      user.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                          alert("User registered");
+                          res.send("User registered");
+
+                        }
+
+                      }
+                      );
+
+
+                      user2.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                         
+                          res.send("User registered");
+
+                        }
+
+                      }
+
+
+
+
+
+                      );
+                    });
+
+
+
+
+
+                    app.post("/signupInstructor", (req, res) => {
+                      const username = req.body.username;
+                      const Email = req.body.email;
+                      const Password = req.body.password;
+
+                      const user = new Instructor({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+                      const user2 = new User({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+
+
+                      user.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                          alert("User registered");
+                          res.send("User registered");
+
+                        }
+
+                      }
+                      );
+
+
+                      user2.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                         
+                          res.send("User registered");
+
+                        }
+
+                      }
+
+
+
+
+
+                      );
+                    });
+
+
+
+
+                    app.post("/signupTrainee", (req, res) => {
+
+                      const username = req.body.username;
+                      const Email = req.body.email;
+                      const Password = req.body.password;
+
+                      const user = new Trainee({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+                      const user2 = new User({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+
+
+                      user.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                          alert("User registered");
+                          res.send("User registered");
+
+                        }
+
+                      }
+                      );
+
+
+                      user2.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                         
+                          res.send("User registered");
+
+                        }
+
+                      }
+
+
+
+
+
+                      );
+                    });
+
+
+
+
+                    app.post("/signupCoporate", (req, res) => {
+
+                      const username = req.body.username;
+                      const Email = req.body.email;
+                      const Password = req.body.password;
+
+                      const user = new Coporate({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+                      const user2 = new User({
+                        username: username,
+                        Email: Email,
+                        Password: Password,
+
+                      });
+
+
+
+                      user.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                          alert("User registered");
+                          res.send("User registered");
+
+                        }
+
+                      }
+                      );
+
+
+                      user2.save(function (err) {
+                        if (err) {
+                          res.send(err);
+
+                        }
+                        else {
+
+                         
+                          res.send("User registered");
+
+                        }
+
+                      }
+
+
+
+
+
+                      );
+                    });
+
+
+
+
+
+
+
+
+
+                    // app.post("logout", (req, res) => {
+                    //   localStorage.removeItem('token');
+                    //   localStorage.removeItem('Email');
+                    //   localStorage.removeItem('Password');
+
+
+                    //   console.log(localStorage.getItem('token'))
+                    //   console.log('logged out'  );
+                    //   res.send("logged out");
+                    // }
+                    // );
+
+
+                 app.get  ('/logout', (req, res) => {
+                      localStorage.removeItem('token');
+                      localStorage.removeItem('Email');
+                      localStorage.removeItem('Password');
+                      localStorage.removeItem('ID');
+
+                      console.log(localStorage.getItem('token'))
+                      console.log('logged out'  );
+                      res.send("logged out");
+                    }
+                    );
+
+
+
+                    // app.post("updateMyProfile", (req, res) => { 
+                    //   const mail = req.body.email;
+                    //   const bio = req.body.bio;
+                    //   console.log('a7a');
+
+                    //   Instructor.findOneandUpdate({_id: localStorage.getItem('ID')}, {Email: mail, Bio: bio}, function(err, user) {
+                    //     if (err) {
+                    //       res.send(err);
+                    //       console.log(err);
+                    //     }
+                    //     else {
+                    //       alert("Updated");
+                    //       res.send("Updated");
+                    //     }
+                    //   }
+                    //   );
+                    // }
+
+                    // );
+
+                    app.post("/updateMyProfile", (req, res) => {
+
+                      const mail = req.body.email;
+
+                      const password = req.body.password;
+
+                      const bio = req.body.bio;
+
+                      
+                      
+
+                      Instructor.findOneAndUpdate({ _id: localStorage.getItem('ID') }, { Email: mail,Password:password, Bio: bio }, function (err, user) {
+
+                        if (err) {
+                          res.send(err);
+                          console.log(err);
+                        }
+                        else {
+                          alert("Updated");
+                          res.send("Updated");
+                        }
+                      }
+                      );
+                    }
+
+                    );
+
+
+
+                      
+
+//                     app.post('sendEmail', (req, res) => {
+                      
+//                    const  email = req.body.email;
+
+//                    console.log('kadyyy');
+
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'ahmedelkadyy21@gmail.com',
+//     pass: 'ykidngjdhxyqtleg'
+//   }
+// });
+
+// var mailOptions = {
+//   from: 'ahmedelkadyy21@gmail.com',
+//   to: email,
+//   subject: 'Change Password',
+// html: '<h1>Welcome</h1><p>That was easy!</p>'
+// };
+
+// transporter.sendMail(mailOptions, function(error, info){
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     alert('Email sent: ' + info.response);
+//     console.log('Email sent: ' + info.response);
+//   }
+// });
+
+//                     }
+//                     );
+
+app.post("/sendEmail", (req, res) => {
+
+  const email = req.body.email;
+
+  console.log('kadyyy');
+
+  var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user:'ahmedelkadyy21@gmail.com',
+      pass:'ykidngjdhxyqtleg'
+    }
+
+  });
+
+  var mailOptions = {
+    from: 'ahmedelkadyy21@gmail.com',
+    to: email,
+    subject: 'Change Password',
+
+    html: '<p>Your verfication code is 8257</p>'
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+
+    if (error) {
+      console.log(error);
+    } else {
+      alert('Email sent: ' );
+      console.log('Email sent: ' + info.response);
+    }
+  }
+  );
+
+}
+);
+
+
+app.post("/checkCode", (req, res) => {
+
+  
+  const code = req.body.code;
+
+  if (code == '8257') {
+    alert('Code is correct');
+    res.send('Code is correct');
+    
+  }
+  else {
+
+    alert('Code is incorrect');
+    res.send('Code is incorrect');
+  }
+}
+);
+
+app.post("/changePassword", (req, res) => {
+
+  const password = req.body.password;
+  const email = req.body.email;
+
+ 
+
+    User.findOneAndUpdate({ Email
+      : email }, { Password: password }, function (err, user) {
+  
+        if (err) {
+          res
+  
+  
+            .
+            send
+            (err);
+          console.log(err);
+        }
+        else {
+          alert("Password changed");
+          res.send("Updated");
+        }
+      }
+      )
+      ;
+      
+}
+);
+
+
+
+
+  
+
+ 
+
+
+
+
+ const loggeedIn = false;
+
+app.get("loggedIn", (req, res) => {
+
+  console.log(localStorage.getItem('token'));
+
+  if (localStorage.getItem('token') == null) {
+    loggeedIn = false;
+    console.log(loggeedIn);
+    res.send(loggeedIn);
+  }
+  else {
+    loggeedIn = true;
+    res.send(loggeedIn);
+  }
+
+
+}
+
+);
+
+
+
+
+
+
+                    
+
+                
+
+
+
+              
+                    
+
+                          
+
+
+
+
+                      
+                      
+
+
                     
 
 

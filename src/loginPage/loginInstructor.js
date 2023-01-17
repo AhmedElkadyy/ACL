@@ -12,24 +12,31 @@ import SignUp from '../signupPage/signup';
 
 
 
-function Login () {
+function InstructorLogin () {
 
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
     const [buttonLogin, setButtonLogin] = useState(false);
     const [buttonSignUp, setButtonSignUp] = useState(false);
+    const [buttonForgotPassword, setButtonForgotPassword] = useState(false);
 
     if (buttonSignUp){
 
-        return <Navigate to="/signup" />    
+        return <Navigate to="/signupInstructor" />    
     }
 
-    const login = () => {
-        Axios.post("http://localhost:3000/login", { Email: Email, Password: Password})
+   if (buttonLogin){
+        Axios.post("http://localhost:3000/loginInstructor", { Email: Email, Password: Password});
+        return <Navigate to="/instructor" />
+
 
         
       }
 
+      if(buttonForgotPassword){
+        return <Navigate to="/forgotPassword" />
+ 
+         }
     return (
         <div>
             
@@ -37,7 +44,7 @@ function Login () {
 
             <div className="loginContainer">
 
-                <h1 className='loginH1'>LOGIN PAGE</h1>
+                <h1 className='loginH1'>INSTRUCTOR LOGIN </h1>
 
                 <div className="loginForm">
 
@@ -47,11 +54,12 @@ function Login () {
                 <label className='loginLabel'>Password</label>
                 <input type="text" placeholder="Enter password"  className='loginInput' onChange={(event) => { setPassword(event.target.value)}}/>
                 <span className="loginLabel">Forgot Password?</span>
-                <button className="loginBtn" onClick={login}>Login</button>
+                <button className="loginBtn" onClick={()=>{setButtonLogin(true)}}>Login</button>
             
-
+                <button className="loginBtn"   onClick={()=>{setButtonForgotPassword(true)}}>Forgot Password?</button>
              
                 <button className='loginBtn' onClick={()=>{setButtonSignUp(true)}}>Create a New Account </button>
+
            
 
 
@@ -76,4 +84,4 @@ function Login () {
 
 }
 
-export default Login;
+export default InstructorLogin;
