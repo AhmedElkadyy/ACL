@@ -98,6 +98,22 @@ Validation using JOI	✔️
 
 This project is licensed under the Apache License 2.0. See the LICENSE file for details.
 ## Screenchots
+
+<img width="1440" alt="Screenshot 2023-01-17 at 9 37 20 PM" src="https://user-images.githubusercontent.com/83039370/213018788-71f887bf-60e1-4c40-b614-aabfd6a0e38e.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 35 04 PM" src="https://user-images.githubusercontent.com/83039370/213018794-7f9e3f2c-45ea-44ee-b0f2-7ed752190b1c.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 35 14 PM" src="https://user-images.githubusercontent.com/83039370/213018823-0d27521d-ffa1-4bf8-97f6-d8165193221c.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 37 03 PM" src="https://user-images.githubusercontent.com/83039370/213018852-9a65f3ad-3886-4a2f-8dda-9067e5d70a7c.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 36 58 PM" src="https://user-images.githubusercontent.com/83039370/213018854-2d098e39-4f1b-4ae8-90c9-a9302f3af640.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 39 02 PM" src="https://user-images.githubusercontent.com/83039370/213018855-748c45e1-f32e-4aa7-8e96-e2b1ef1c6777.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 36 41 PM" src="https://user-images.githubusercontent.com/83039370/213018858-0697c2db-844e-4a21-ba36-045123da550a.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 38 59 PM" src="https://user-images.githubusercontent.com/83039370/213018880-85e87fa1-8ef5-49a0-b373-56e7ab038757.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 36 25 PM" src="https://user-images.githubusercontent.com/83039370/213018881-bf0a6346-0864-43b6-bbd9-c8118d9057a7.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 38 38 PM" src="https://user-images.githubusercontent.com/83039370/213018906-2b20ce70-3fdd-4ae7-8948-0fc6aca80628.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 36 08 PM" src="https://user-images.githubusercontent.com/83039370/213018908-784ab1ac-16f1-4c65-adaf-ffca9fbbed4d.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 37 56 PM" src="https://user-images.githubusercontent.com/83039370/213018936-31d05ee5-f736-4bf5-860f-692b213693d8.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 36 03 PM" src="https://user-images.githubusercontent.com/83039370/213018938-dd2b628e-ed76-4b3f-81ed-808715bf47b4.png">
+<img width="1440" alt="Screenshot 2023-01-17 at 9 37 33 PM" src="https://user-images.githubusercontent.com/83039370/213018965-b487c673-37da-4fe1-8f5e-96181f8f3ae9.png">
+
 ## Configuration and Setup 
 
 In order to run this project locally, simply fork and clone the repository or download as zip and unzip on your machine
